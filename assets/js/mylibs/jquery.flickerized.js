@@ -33,11 +33,13 @@
                                 break;
                         }
         },
-        getList : function(json_data, size) {
+        getList : function(json_data, size, title) {
                     flickr_list = '';
                     $.each(json_data.items, function(i,item) {
-
-                        flickr_list += '<li><a href="'+item.link+'"><img src="'+methods.getItemURLbySize(item.media.m, size)+'" title="'+item.title+'" /></a></li>\n';
+                        flickr_list += '\t<li><a href="'+item.link+'">\n';
+                        if(title) flickr_list += '\t\t<span>'+item.title+'</span>';
+                        flickr_list += '\t\t<img src="'+methods.getItemURLbySize(item.media.m, size)+'" title="'+item.title+'" />\n';
+                        flickr_list += '\t</a></li>\n';
                     });
                     return flickr_list;
         }
@@ -59,11 +61,11 @@
 
         $.getJSON( 'http://api.flickr.com/services/feeds/photos_public.gne?id='+opts.uid+'&lang=en-us&format=json&jsoncallback=?', function(json_data) {
 
-            $('#ui-flickerized').html(methods.getList(json_data, opts.size));
+            $('#ui-flickerized').html(methods.getList(json_data, opts.size, opts.title));
             if (opts.group != null) {
                 $filter_items = $('#ui-flickerized').children();
                 for ( var i = 0; i < methods.getNumberOfElements(json_data); i+=opts.group) {
-                    $filter_items.filter(':eq(' + i + '), :lt(' + (i + opts.group) + '):gt(' + i + ')').wrapAll('<li><ul></ul></li>');
+                    $filter_items.filter(':eq('+i+'), :lt('+(i+opts.group)+'):gt('+i+')').wrapAll('<li><ul></ul></li>');
                 }
             }
         });
@@ -73,6 +75,7 @@
     $.fn.flickrized.defaults = {
         uid: null,              // User ID
         group: null,            // Group elements
-        size: 's'               // Thumb default size: small (s), large (l), medium (default)
+        size: 's',              // Thumb default size: small (s), medium (m), large (l)
+        title: false            // Shows item title
     };
 })(jQuery);

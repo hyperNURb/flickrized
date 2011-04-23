@@ -15,9 +15,11 @@
 = COMMON
 -------------------------------------------------------------------------------------- */
 ul{ list-style: none;}
-ul ul{ clear: both;}
-ul ul li{ float: left; display: block;}
-
+ul ul{ clear: both; margin-bottom: 5px;}
+ul ul li{ float: left; display: block; margin-right: 1px; position: relative;}
+ul ul li a{ text-decoration: none; font-weight: bold; font-size: 11px;}
+ul ul li a span{ color: #fff; display: block; position: absolute; background: #000; padding: 1px 3px;}
+ul ul li a:hover span{ background: #d80f69;}
 
 /*
 = Mobile devices
