@@ -15,11 +15,26 @@
 = COMMON
 -------------------------------------------------------------------------------------- */
 ul{ list-style: none;}
-ul ul{ clear: both; margin-bottom: 5px;}
-ul ul li{ float: left; display: block; margin-right: 1px; position: relative;}
+ul ul{ clear: both; overflow: hidden;}
+ul ul li{ float: left; display: block; margin: 0 1px 1px 0; position: relative; overflow: hidden;}
 ul ul li a{ text-decoration: none; font-weight: bold; font-size: 11px;}
 ul ul li a span{ color: #fff; display: block; position: absolute; background: #000; padding: 1px 3px;}
 ul ul li a:hover span{ background: #d80f69;}
+
+
+/* Modal --*/
+#ui-flickrized-modal{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: block;}
+#ui-flickrized-modal-overlay{ background: rgba(0,0,0,0.3); position: fixed; top: 0; right: 0; bottom: 0; left: 0; display: block;}
+#ui-flickrized-modal-content{
+  display: block; z-index: 99; position: absolute; padding: 10px; background: #fff; top: 50%; left: 50%;
+     -moz-box-shadow: 3px 5px 20px rgba(0,0,0,.5);
+  -webkit-box-shadow: 3px 5px 20px rgba(0,0,0,.5);
+          box-shadow: 3px 5px 20px rgba(0,0,0,.5);
+}
+#ui-flickrized-modal-content img{ display: none;}
+#ui-flickrized-modal-close{ position: absolute; right: 20px; top: 20px; text-transform: uppercase; font-size: 10px; font-weight: bold; text-decoration: none; background: #000; display: none; padding: 2px 3px; color: #fff;}
+    #ui-flickrized-modal-close:hover{ background: #d80f69; color: #fff;}
+    #ui-flickrized-modal-content:hover #ui-flickrized-modal-close{ display: block;}
 
 /*
 = Mobile devices
